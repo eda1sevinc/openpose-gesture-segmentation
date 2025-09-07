@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "openpose-gesture-segmentation"
+version = "0.1.0"
+description = "Segment gestures from OpenPose JSON and export TSV/EAF for ELAN"
+authors = ["ozgen <ozgn45@gmail.com>"]
+readme = "README.md"
+packages = [{ include = "openpose_gesture_segmentation", from = "src" }]
+
+[tool.poetry.dependencies]
+# pick your real Python; 3.10–3.12 are the safest with most libs
+python = "^3.10"
+numpy = "^2.0.0"
+# optional (only if you want native .eaf export later)
+pympi-ling = { version = "^1.70.0", optional = true }
+
+[tool.poetry.extras]
+eaf = ["pympi-ling"]
+
+[tool.poetry.scripts]
+opgs = "openpose_gesture_segmentation.main:main"
+
+[build-system]
+requires = ["poetry-core>=1.9.0,<2.0.0"]
+build-backend = "poetry.core.masonry.api"
